@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function moreLink() {
+        const inputLinkValue = document.getElementsByClassName("link")[0].value;
+        console.log(inputLinkValue);
+
+        const numberLink = Number(
+          document.getElementsByClassName("number")[0].value
+        );
+        console.log(numberLink);
+
+        for (let i = 1; i <= numberLink; i++) {
+          let array = inputLinkValue.split("");
+          console.log(array);
+          const index = array.indexOf("_") + 1;
+          console.log(index);
+          let newArray = array.splice(index, 1, i);
+          console.log(newArray);
+          let newString = array.join("");
+          console.log(newString);
+
+          let res = document.querySelector(".res");
+
+          let p = document.createElement("p");
+          p.innerText = newString;
+          res.appendChild(p);
+        }
+      }
+
+      function moreLinkNew() {
+        const inputLinkValueNew =
+          document.getElementsByClassName("linkNew")[0].value;
+        const numberLinkNew = Number(
+          document.getElementsByClassName("numberNew")[0].value
+        );
+        for (let i = 1; i <= numberLinkNew; i++) {
+          let arrayNew = inputLinkValueNew.split("");
+          const indexNew1 = arrayNew.indexOf("%") + 3;
+          const indexNew2 = arrayNew.indexOf(-1) - 8;
+          let newArrayNew =
+            arrayNew.splice(indexNew1, 1, i) &&
+            arrayNew.splice(indexNew2, 1, i);
+          let newStringNew = arrayNew.join("");
+
+          let res2 = document.querySelector(".res2");
+
+          let p1 = document.createElement("p");
+          p1.innerText = newStringNew;
+          res2.appendChild(p1);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <style>
+      body {
+        display: flex;
+        justify-content: space-between;
+        padding-left: 300px;
+        padding-right: 300px;
+        padding-top: 100px;
+      }
+    </style>
+    <div class="old">
+      <h1>Joomla v3</h1>
+      <input class="link" type="text" placeholder="Введите ссылку" />
+      <p></p>
+      <input
+        class="number"
+        type="number"
+        placeholder="Введите количество повоторов"
+      />
+      <button class="btn" type="button" onclick="moreLink()">Получить</button>
+      <div class="res"></div>
+    </div>
+    <div class="new">
+      <h1>Joomla v4 and more</h1>
+      <input class="linkNew" type="text" placeholder="Введите ссылку" />
+      <p></p>
+      <input
+        class="numberNew"
+        type="number"
+        placeholder="Введите количество повоторов"
+      />
+      <button class="btn" type="button" onclick="moreLinkNew()">
+        Получить
+      </button>
+      <div class="res2"></div>
+    </div>
+  </body>
+</html>
+
+<!-- <img src="images/March23/KrymInRussia_3.jpg" alt="" width="1068" height="712" />  -->
+
+<!-- <img src="images/march23/kryminrussia%202.jpg" width="1050" height="700" loading="lazy" data-path="local-images:/march23/kryminrussia 2.jpg" /> -->
