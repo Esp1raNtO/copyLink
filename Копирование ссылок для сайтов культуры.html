@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      body {
+        display: flex;
+        justify-content: space-between;
+        padding-left: 300px;
+        padding-right: 300px;
+        padding-top: 100px;
+      }
+      .link,
+      .linkNew,
+      .number,
+      .numberNew {
+        border: 3px solid lightgrey;
+        width: 300px;
+        height: 2em;
+        border-radius: 15px;
+        margin-right: 15px;
+        box-shadow: 0 14px 14px rgba(0, 0, 0, 0.25);
+      }
+      .link:focus,
+      .linkNew:focus,
+      .number:focus,
+      .numberNew:focus {
+        border: 3px solid gray;
+      }
+      .link:hover,
+      .linkNew:hover,
+      .numberNew:hover,
+      .number:hover {
+        box-shadow: 2px 2px white, 4px 4px #c76637;
+      }
+      .btn {
+        margin-top: 15px;
+        border: 3px solid lightgrey;
+        width: 250px;
+        height: 3rem;
+        font-size: 1em;
+        border-radius: 15px;
+        box-shadow: 10px 14px 14px rgba(0, 0, 0, 0.25);
+      }
+      .btn:hover {
+        box-shadow: 2px 2px white, 4px 4px #c76637;
+      }
+      .p1 {
+        margin-top: 35px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="old">
+      <h1>Joomla v3</h1>
+      <input class="link" type="text" placeholder="Введите ссылку" />
+      <p></p>
+      <input
+        id="input"
+        class="number"
+        type="number"
+        placeholder="Введите количество повоторов"
+      />
+      <button class="btn" type="button" onclick="moreLink()">Получить</button>
+      <div class="res"></div>
+    </div>
+    <div class="new">
+      <h1>Joomla v4 and more</h1>
+      <input class="linkNew" type="text" placeholder="Введите ссылку" />
+      <p></p>
+      <input
+        id="inputNew"
+        class="numberNew"
+        type="number"
+        placeholder="Введите количество повоторов"
+      />
+      <button class="btn" type="button" onclick="moreLinkNew()">
+        Получить
+      </button>
+      <div class="res2"></div>
+    </div>
+
+    <script>
+      let input = document.getElementById("input");
+      let inputNew = document.getElementById("inputNew");
+      input.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") moreLink();
+      });
+      inputNew.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") moreLinkNew();
+      });
+
+      function moreLink() {
+        const inputLinkValue = document.getElementsByClassName("link")[0].value;
+        const numberLink = Number(
+          document.getElementsByClassName("number")[0].value
+        );
+
+        for (let i = 1; i <= numberLink; i++) {
+          let array = inputLinkValue.split("");
+          console.log(array);
+          const index = array.indexOf("_") + 1;
+          console.log(index);
+          let newArray = array.splice(index, 1, i);
+          console.log(newArray);
+          let newString = array.join("");
+          console.log(newString);
+
+          let res = document.querySelector(".res");
+
+          let p = document.createElement("p");
+          p.innerText = newString;
+          res.appendChild(p);
+        }
+      }
+
+      function moreLinkNew() {
+        const inputLinkValueNew =
+          document.getElementsByClassName("linkNew")[0].value;
+        const numberLinkNew = Number(
+          document.getElementsByClassName("numberNew")[0].value
+        );
+        for (let i = 1; i <= numberLinkNew; i++) {
+          let arrayNew = inputLinkValueNew.split("");
+          const indexNew1 = arrayNew.indexOf("%") + 3;
+          const indexNew2 = arrayNew.indexOf(-1) - 8;
+          let newArrayNew =
+            arrayNew.splice(indexNew1, 1, i) &&
+            arrayNew.splice(indexNew2, 1, i);
+          let newStringNew = arrayNew.join("");
+
+          let res2 = document.querySelector(".res2");
+
+          let p1 = document.createElement("p");
+          p1.innerText = newStringNew;
+          res2.appendChild(p1);
+        }
+      }
+    </script>
+  </body>
+</html>
+
+<!-- <img src="images/March23/KrymInRussia_3.jpg" alt="" width="1068" height="712" />  -->
+
+<!-- <img src="images/march23/kryminrussia%202.jpg" width="1050" height="700" loading="lazy" data-path="local-images:/march23/kryminrussia 2.jpg" /> -->
